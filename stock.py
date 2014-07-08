@@ -103,6 +103,10 @@ class stock_move (osv.osv):
 class Stock_Picking_Out(osv.osv):
     _inherit  ='stock.picking.out'
     
+    _columns = {
+        'delivery_time':fields.char(u'配送时间'),
+    }
+    
     def action_assign(self, cr, uid, ids, *args):
         wf_service = netsvc.LocalService("workflow")
         for pick in self.browse(cr, uid, ids):
@@ -115,7 +119,12 @@ class Stock_Picking_Out(osv.osv):
         return True
     
 class StockPicking(osv.osv):
+    _name = 'stock.picking'
     _inherit = 'stock.picking'  
+    
+    _columns = {
+        'delivery_time':fields.char(u'配送时间'),
+    }
     
     def action_assign(self, cr, uid, ids, *args):
         wf_service = netsvc.LocalService("workflow")

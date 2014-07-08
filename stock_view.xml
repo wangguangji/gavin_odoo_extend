@@ -16,6 +16,42 @@
             </field>
     </record>
     
+    
+    <record id="view_picking_form_out_gavin_odoo" model="ir.ui.view">
+            <field name="name">stock.picking.out.form_gavin_odoo</field>
+            <field name="model">stock.picking.out</field>
+            <field name="inherit_id" ref="stock.view_picking_out_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group/group/field[@name='stock_journal_id']" position='after'>
+                    <field name="delivery_time" />
+                </xpath>
+            </field>
+    </record>
+    
+    <record id="view_picking_form_gavin_odoo" model="ir.ui.view">
+            <field name="name">stock.picking.form.gavin_odoo</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group/group/field[@name='stock_journal_id']" position='after'>
+                    <field name="delivery_time" />
+                </xpath>
+            </field>
+    </record>
+    
+    
+    <record model="ir.ui.view" id="sale_picking_order_tree_out_gavin_odoo">
+            <field name="name">stock.picking.view.tree_gavin_odoo</field>
+            <field name="model">stock.picking.out</field>
+            <field name="inherit_id" ref="stock.view_picking_out_tree" />
+            <field name="arch" type="xml">
+                <field name="min_date" position="after">
+                    <field name="delivery_time"/>
+                </field>
+            </field>
+    </record>
+    
+    
    <report id="out_order_report" model="stock.picking" name="stock.out_order.report" string="捡货单" 
                 rml="gavin_odoo_extend/report/out_bill_order.rml" header="False" auto="False" />
                 
