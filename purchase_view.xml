@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+
+        <record id="view_purchase_order_gavin_odoo" model="ir.ui.view">
+                <field name="name">gavin.odoo.purchase.order</field>
+                <field name="model">purchase.order</field>
+                <field name="inherit_id" ref="purchase.purchase_order_form"/>
+                <field name="arch" type="xml">
+                    
+                    <xpath expr="/form/header//button[@name='view_invoice']" position="attributes">
+                        <attribute name="groups">account.group_account_manager</attribute>
+                    </xpath>
+                    <xpath expr="/form/header//button[@name='view_picking']" position="attributes">
+                        <attribute name="groups">stock.group_stock_manager</attribute>
+                    </xpath>
+                </field>
+        </record>
+        
+        <record id="view_purchase_order_gavin_odoo_2" model="ir.ui.view">
+            <field name="name">Purchase Picking Inherited</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_2_stock_picking"/>
+            <field name="arch" type="xml">
+                    <xpath expr="/form/sheet//button[@name='invoice_open']" position="attributes">
+                        <attribute name="groups">account.group_account_manager</attribute>
+                    </xpath>
+                    <xpath expr="/form/sheet//button[@name='view_picking']" position="attributes">
+                        <attribute name="groups">stock.group_stock_manager</attribute>
+                    </xpath>
+            </field>
+        </record>
+        
+    </data>
+</openerp>

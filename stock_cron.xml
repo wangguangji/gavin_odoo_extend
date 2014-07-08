@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<openerp>
+    <data noupdate="1">
+        <record model="ir.cron" id="ir_cron_clear_sequence_pdf">
+            <field name="name">自动清空出库单的序号</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False"/>
+            <field eval="False" name="active" />
+            <field name="model" eval="'stock.picking'"/>
+            <field name="function" eval="'clear_sequence_pdf'"/>
+            <field name="args" eval="'()'"/>
+        </record>
+    </data>
+</openerp>

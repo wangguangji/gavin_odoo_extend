@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_picking_out_check_wizard" model="ir.ui.view">
+            <field name="name">picking.out.check.wizard.form</field>
+            <field name="model">picking.out.check.wizard</field>
+            <field name="arch" type="xml">
+            <form string="Leaves by Department" version="7.0">
+                <group>
+                    <label for="name" string="扫描单号"/>
+                    <div >
+                        <field name="name"  on_change="onchange_stock_out_code(name,last_name,move_ids)" />
+                        <field name="confirm" invisible="1"/>
+                    </div>
+                 </group>
+                 <group>
+                    <label for="name" string="出库单号"/>
+                    <div >
+                        <field name="last_name" readonly="1"/>
+                    </div>
+                 </group>
+                <field name="move_ids" >
+                        <tree string="出库明细" editable="bottom" create="false" delete="false" >
+                            <field name="product_name" readonly="1" />
+                            <field name="product_code" readonly="1"/>
+                            <field name="product_qty" readonly="1"/>
+                            <field name="state" invisible="1"/>
+                            <button   readonly="1" icon="STOCK_NO"  attrs="{'invisible': [('state','=',True)]}"/>
+                            <button   readonly="1" icon="STOCK_YES"  attrs="{'invisible': [('state','=',False)]}"/>
+                        </tree>
+               </field> 
+                <footer>
+                    <button name="do_check" string="处理" attrs="{'invisible':[('confirm','=',False)]}" type="object" class="oe_highlight"/>   
+                    <button string="Cancel" special="cancel" class="oe_link"/>
+                </footer>
+            </form>
+            </field>
+        </record>
+
+       <record id="fresh_action_picking_out_check" model="ir.actions.act_window">
+            <field name="name">出库检测</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">picking.out.check.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem name="出库检测" action="fresh_action_picking_out_check" groups="stock.group_stock_manager" id="fresh_menu_action_picking_out_check"  sequence="120"/>
+ 
+    </data>
+</openerp>

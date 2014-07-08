@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+
+    <record model="ir.ui.view" id="gavin_odoo_stock_picking_tree">
+            <field name="name">gavin.odoo.stock.pick.tree</field>
+            <field name="model">stock.move</field>
+            <field name='inherit_id' ref='stock.view_move_picking_tree'/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='state']" position='after'>
+                    <field name="type" invisible="1"/>
+                    <field name="qc_scan" invisible="1"/>
+                    <button   readonly="1" icon="STOCK_NO"  attrs="{'invisible': ['|','|',('qc_scan','=',True),('state','=','cancel'),('type','!=','out')]}"/>
+                    <button   readonly="1" icon="STOCK_YES"  attrs="{'invisible': ['|','|',('qc_scan','=',False),('state','=','cancel'),('type','!=','out')]}"/>
+                </xpath>
+            </field>
+    </record>
+    
+   <report id="out_order_report" model="stock.picking" name="stock.out_order.report" string="捡货单" 
+                rml="gavin_odoo_extend/report/out_bill_order.rml" header="False" auto="False" />
+                
+    <report id="out_order_report_out" model="stock.picking.out" name="stock.out_order.report" string="捡货单" 
+                rml="gavin_odoo_extend/report/out_bill_order.rml" header="False" auto="False" />
+    
+    </data>
+</openerp>

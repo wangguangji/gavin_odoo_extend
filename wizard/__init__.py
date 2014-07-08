@@ -1,0 +1,1 @@
+import stock_check_out_product

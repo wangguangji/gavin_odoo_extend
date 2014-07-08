@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+		<record id="product_normal_form_view_product_attribute" model="ir.ui.view">
+			<field name="name">product.normal.form.inherit.product_attribute</field>
+			<field name="model">product.product</field>
+			<field name="inherit_id" ref="product.product_normal_form_view"/>
+			<field name="arch" type="xml">
+				<data>
+                    <xpath expr="//div[@class='oe_title']" position="inside">
+                            <label for="gb_code" string="商家编号:"/>
+                            <div name="gb_code">
+                                <field name="gb_code" />
+                            </div>
+                    </xpath>
+                     <xpath expr="//field[@name='default_code']" position="after">
+                         <field name="standard" />
+                    </xpath>
+                </data>
+			</field>
+		</record>
+		
+		<record id="product_normal_tree_view_product_attribute" model="ir.ui.view">
+            <field name="name">product.normal.tree.inherit.product_attribute</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_product_tree_view"/>
+            <field name="arch" type="xml">
+                <data>
+                     <xpath expr="//field[@name='default_code']" position="after">
+                         <field name="gb_code" />
+                    </xpath>
+                </data>
+            </field>
+        </record>
+		
+		
+    </data>
+</openerp>
